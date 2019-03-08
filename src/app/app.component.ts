@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import  Data  from "../assets/arrival-rate-raw.json";
+import  Data  from "../assets/arrival-rate-raw.js";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,82 +11,56 @@ export class AppComponent implements OnInit{
    
   }
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-  
-    // console.log(this.data,Data);
-
+    this.topicsArray=Array.from(new Set(Data.map(rData => rData.topic)));
     this.seriesData=this.getProcessedArrivalData(Data);
     this.chartOptions.series=this.seriesData;
-    
+    this.chartOptions.xAxis.categories=this.topicsArray;
   }
   getProcessedArrivalData(rawData){
     let processedSeriesData = [];
-    // rawData.forEach()
     const self=this;
-    const topicArray = 
-    rawData.forEach((data)=>{
-      let index = processedSeriesData.findIndex(sData => sData.name === data.topic);
-      if(index === -1) {
-        processedSeriesData.push({name: data.topic,data:[]});
-        index=processedSeriesData.length-1;
-      }
-      console.log(processedSeriesData);
-      console.log(index);
-      processedSeriesData[index]["data"].push(new Date(data.timestamp).getTime())
-    })
-  // console.log(processedSeriesData);
+    this.topicsArray.forEach(topic => {
+        const topicData = rawData.filter(trData => trData.topic === topic);
+        const consumersList = Array.from(new Set(rawData.map(rData => rData.consumer)));
+        consumersList.forEach(consumer => {
+            let index = processedSeriesData.findIndex(psData => psData.name === consumer);
+            if(index === -1) {
+              processedSeriesData.push({name: consumer,data:[]});
+              index=processedSeriesData.length-1;
+            }
+            let count = 0;
+            const consumerData = topicData.filter(tData => tData.consumer === consumer);
+            count = consumerData.reduce((acc, dataItem) => (
+                dataItem.topic === topic ? acc + 1 : acc
+            ), 0);
+            processedSeriesData[index]["data"].push(count);
+        });
+    });
   return processedSeriesData;
   }
   title = 'demo1';
   Highcharts = Highcharts; // required
   chartConstructor = 'chart'; // optional string, defaults to 'chart'
   seriesData;
-  chartOptions = { title: {
-        text: 'Solar Employment Growth by Sector, 2010-2016'
+  topicsArray;
+  chartOptions = { 
+    title: {
+        text: 'Consumers Requests vs Topic'
     },
-
-    // subtitle: {
-    //     text: 'Source: thesolarfoundation.com'
-    // },
-
     yAxis: {
         title: {
-            text: 'Number of Employees'
+            text: 'Requests Count'
         }
+    },
+    xAxis: {
+        categories: []
     },
     legend: {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle'
     },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: 2010
-        }
-    },
-
-    series: [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-    }, {
-        name: 'Manufacturing',
-        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-    }, {
-        name: 'Sales & Distribution',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-    }, {
-        name: 'Project Development',
-        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-    }, {
-        name: 'Other',
-        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-    }],
-
+    series: [],
     responsive: {
         rules: [{
             condition: {
@@ -101,12 +75,7 @@ export class AppComponent implements OnInit{
             }
         }]
     }
-
 }// required
-  // chartCallback = function (chart) { ... } // optional function, defaults to null
-
-  
-  updateFlag = false; // optional boolean
-  oneToOneFlag = true; // optional boolean, defaults to false
-
+//   updateFlag = false; // optional boolean
+//   oneToOneFlag = true; // optional boolean, defaults to false
 }

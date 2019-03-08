@@ -1,4 +1,4 @@
-[
+const arrivalRateData = [
 	{
 		"topic": "Topic 1",
 		"consumer": "Consumer 1",
@@ -41,7 +41,7 @@
     },
     {
 		"topic": "Topic 1",
-		"consumer": "Consumer 1",
+		"consumer": "Consumer 2",
 		"timestamp": "01-Mar-2019 01:03:03"
 	},
 	{
@@ -54,4 +54,5 @@
 		"consumer": "Consumer 2",
 		"timestamp": "01-Mar-2019 01:04:05"
 	}
-]
+];
+export default arrivalRateData;
