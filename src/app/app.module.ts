@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MainContentComponent } from './main-content/main-content.component';
+import { ConsumerComponent } from './consumer/consumer.component';
+import { TopicsComponent } from './topics/topics.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,9 @@ import { MainContentComponent } from './main-content/main-content.component';
     HighChartsComponent,
     HeaderComponent,
     ContentComponent,
-    MainContentComponent
+    MainContentComponent,
+    ConsumerComponent,
+    TopicsComponent
   ],
   imports: [
     BrowserModule,
