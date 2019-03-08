@@ -1,14 +1,31 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import  Data  from "../assets/arrival-rate-raw.json";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  constructor(){
+   
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+  
+    console.log(this.data,Data);
+
+    this.data=this.getProcessedArrivalData(Data);
+    
+  }
+  getProcessedArrivalData(rawData){
+    let processedSeriesData = []
+  }
   title = 'demo1';
   Highcharts = Highcharts; // required
   chartConstructor = 'chart'; // optional string, defaults to 'chart'
+  data;
   chartOptions = { title: {
         text: 'Solar Employment Growth by Sector, 2010-2016'
     },
