@@ -14,25 +14,41 @@ export class AppComponent implements OnInit{
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   
-    console.log(this.data,Data);
+    // console.log(this.data,Data);
 
-    this.data=this.getProcessedArrivalData(Data);
+    this.seriesData=this.getProcessedArrivalData(Data);
+    this.chartOptions.series=this.seriesData;
     
   }
   getProcessedArrivalData(rawData){
-    let processedSeriesData = []
+    let processedSeriesData = [];
+    // rawData.forEach()
+    const self=this;
+    const topicArray = 
+    rawData.forEach((data)=>{
+      let index = processedSeriesData.findIndex(sData => sData.name === data.topic);
+      if(index === -1) {
+        processedSeriesData.push({name: data.topic,data:[]});
+        index=processedSeriesData.length-1;
+      }
+      console.log(processedSeriesData);
+      console.log(index);
+      processedSeriesData[index]["data"].push(new Date(data.timestamp).getTime())
+    })
+  // console.log(processedSeriesData);
+  return processedSeriesData;
   }
   title = 'demo1';
   Highcharts = Highcharts; // required
   chartConstructor = 'chart'; // optional string, defaults to 'chart'
-  data;
+  seriesData;
   chartOptions = { title: {
         text: 'Solar Employment Growth by Sector, 2010-2016'
     },
 
-    subtitle: {
-        text: 'Source: thesolarfoundation.com'
-    },
+    // subtitle: {
+    //     text: 'Source: thesolarfoundation.com'
+    // },
 
     yAxis: {
         title: {
