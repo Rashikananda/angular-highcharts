@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main-content',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  dispatch(routeName){
+    switch(routeName) {
+      case "consumers": {
+        this.router.navigate(['/', routeName]);
+        break;
+      }
+      case "topics": {
+        this.router.navigate(['/', routeName]);
+        break;
+      }
+      default: {
+        this.router.navigate(['/', routeName]);
+      }
+    }
+  }
 }

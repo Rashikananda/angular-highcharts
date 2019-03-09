@@ -1,24 +1,41 @@
 
-<mat-grid-list cols="4" rowHeight="120px">
-    <!-- <mat-grid-tile><mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-      
-        <mat-card-content>
-          
-           
-         
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>Go to Page </button>
-        </mat-card-actions>
-      </mat-card></mat-grid-tile> -->
-<mat-grid-tile>Simple card</mat-grid-tile>
-<mat-grid-tile>Simple card</mat-grid-tile>
-<mat-grid-tile>Simple card</mat-grid-tile>
+<mat-grid-list cols="4" rowHeight="150px">
+  <mat-grid-tile>
+    <div class="tile-wrapper">
+      <div class="tile-panel topics">
+        <div class="tile-text">Topics</div>
+        <div class="tile-value">12</div>
+        <div class="tile-link" (click)='dispatch("topics")'>GOTO Page</div>
+      </div>
+    </div>
+  </mat-grid-tile>
 
-    
-  </mat-grid-list>
+  <mat-grid-tile>
+    <div class="tile-wrapper">
+      <div class="tile-panel consumers">
+        <div class="tile-text">Consumers</div>
+        <div class="tile-value">144</div>
+        <div class="tile-link" (click)='dispatch("consumers")'>GOTO Page</div>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div class="tile-wrapper">
+      <div class="tile-panel brokers">
+        <div class="tile-text">Brokers</div>
+        <div class="tile-value">5</div>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div class="tile-wrapper">
+      <div class="tile-panel messages">
+        <div class="tile-text">Messages</div>
+        <div class="tile-value">125402</div>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
