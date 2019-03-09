@@ -5,6 +5,9 @@ import Data1 from "../../assets/new-arraival-rate";
 import * as moment from 'moment';
 import { DataService } from '../service/data.service.js';
 import { isUndefined } from 'util';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-common',
   templateUrl: './common.component.html',
@@ -17,21 +20,29 @@ seriesData;
 topicsArray;
 consumerArray;
 // name="d dsvbdshbvhjvhdvs";
-constructor(private ds: DataService) {}
+constructor(private ds: DataService,  private route: ActivatedRoute,
+    private router: Router) {}
 
-
+name$;
+masterName;
 ngOnInit(): void {
   console.log(this.name)
   this.topicsArray = Array.from(new Set(Data.map(rData => rData.topic)));
   this.topicsArray = Array.from(new Set(Data.map(rData => rData.consumer))).sort();
   // this.seriesData = this.getProcessedArrivalData1(Data);
   let data1;
-  this.ds.get("topic-ar.json",null).subscribe(data=>{  
+  this.name$ = this.route.paramMap.pipe(
+    switchMap((params: ParamMap) =>{
+       let x = params.get('id');
+       console.log(x);
+       return this.ds.get(x+".json",null);
+    })).subscribe(data=>{
     
-    this.seriesData = this.getProcessedArrivalData2(data)
-    this.chartOptions.series = this.seriesData;
-    this.updateFlag=true;
-console.log(this.seriesData,this.chartOptions.series)});
+        this.seriesData = this.getProcessedArrivalData2(data)
+        this.chartOptions.series = this.seriesData;
+        this.updateFlag=true;
+    console.log(this.seriesData,this.chartOptions.series)});
+ 
     
   
 //   console.log(data1,this.seriesData);
