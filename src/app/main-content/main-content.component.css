@@ -25,7 +25,7 @@
 }
 
 .tile-panel.messages {
-    background: #214B84;
+    background: #E1624F;
 }
 
 .tile-text {
@@ -40,5 +40,6 @@
 
 .tile-link {
     text-decoration: underline;
+    cursor: pointer;
 }
 
