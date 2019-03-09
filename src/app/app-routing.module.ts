@@ -7,8 +7,8 @@ import { CommonComponent } from "./common/common.component";
 // import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/highCharts", pathMatch: "full" },
-  { path: "highCharts", component: HighChartsComponent },
+  { path: "", redirectTo: "/Dashboard", pathMatch: "full" },
+  { path: "Dashboard", component: HighChartsComponent },
   { path: "consumers", component: ConsumersComponent },
   { path: "consumers/:id", component: CommonComponent },
   { path: "topics", component: TopicsComponent },
