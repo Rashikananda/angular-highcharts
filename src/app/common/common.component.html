@@ -1,4 +1,4 @@
-<app-consumer [name]="name"></app-consumer>
+<app-consumer [name]="name" (changes)='changes($event)'></app-consumer>
 <highcharts-chart 
 [Highcharts]="Highcharts"
 
