@@ -132,7 +132,7 @@ export class CommonComponent implements OnInit, OnChanges {
     },
 
     title: {
-      text: "Live random data"
+      text: "Live Data"
     },
     xAxis: {
       type: "datetime",
@@ -179,9 +179,13 @@ export class CommonComponent implements OnInit, OnChanges {
       // }
     ]
   };
-  changes(event) {
-    console.log(event);
-    this.ds.get(this.nameToDisplay + ".json", event).subscribe(data => {
+  changes(event: any[]) {
+    let data = event.filter(d => {
+      return d.key != "type";
+    });
+    data.push({ value: this.nameToDisplay, key: "topic" });
+    console.log(data);
+    this.ds.get(this.nameToDisplay + ".json", data).subscribe(data => {
       this.seriesData = this.getProcessedArrivalData2(data);
       this.chartOptions.series = this.seriesData;
       this.updateFlag = true;

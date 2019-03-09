@@ -3,18 +3,18 @@
     <div class="tile-wrapper">
       <div class="tile-panel topics">
         <div class="tile-text">Topics</div>
-        <div class="tile-value">{{ db.topics }}</div>
-        <div class="tile-link" >GOTO Page</div>
+        <div class="tile-value" style="font-size: 36px;">{{ db.topics }}</div>
       </div>
     </div>
   </mat-grid-tile>
 
-  <mat-grid-tile  (click)="dispatch('consumers')" style="cursor: pointer;">
+  <mat-grid-tile (click)="dispatch('consumers')" style="cursor: pointer;">
     <div class="tile-wrapper">
       <div class="tile-panel consumers">
         <div class="tile-text">Consumers</div>
-        <div class="tile-value">{{ db.consumers }}</div>
-        <div class="tile-link">GOTO Page</div>
+        <div class="tile-value" style="font-size: 36px;">
+          {{ db.consumers }}
+        </div>
       </div>
     </div>
   </mat-grid-tile>
@@ -23,7 +23,7 @@
     <div class="tile-wrapper">
       <div class="tile-panel brokers">
         <div class="tile-text">Brokers</div>
-        <div class="tile-value">{{ db.broker }}</div>
+        <div class="tile-value" style="font-size: 36px;">{{ db.broker }}</div>
       </div>
     </div>
   </mat-grid-tile>
@@ -32,7 +32,9 @@
     <div class="tile-wrapper">
       <div class="tile-panel messages">
         <div class="tile-text">#Messages</div>
-        <div class="tile-value">{{ db.totalMessages }}</div>
+        <div class="tile-value" style="font-size: 36px;">
+          {{ db.totalMessages }}
+        </div>
       </div>
     </div>
   </mat-grid-tile>
