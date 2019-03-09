@@ -3,10 +3,10 @@ import * as Highcharts from "highcharts";
 import Data from "../../assets/arrival-rate-raw.js";
 import Data1 from "../../assets/new-arraival-rate";
 import * as moment from "moment";
-import { DataService } from "../service/data.service.js";
 import { isUndefined } from "util";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { DataService } from "../service/data.service";
 
 @Component({
   selector: "app-common",
@@ -37,7 +37,14 @@ export class CommonComponent implements OnInit, OnChanges {
 
     this.nameToDisplay = this.route.snapshot.paramMap.get("id");
 
-    this.ds.get(this.nameToDisplay + ".json", null).subscribe(data => {
+    let defaultParams = [
+      { key: "startTimeStamp", value: this.ds.getCurrentTime() },
+      { key: "endTimeStamp", value: this.ds.getTimeMinus(1) },
+      { key: "topic", value: this.nameToDisplay },
+      { key: "sampleCount", value: 10 },
+      { key: "arrivalRateUnit", value: "seconds" }
+    ];
+    this.ds.get(this.nameToDisplay + ".json", defaultParams).subscribe(data => {
       this.seriesData = this.getProcessedArrivalData2(data);
       this.chartOptions.series = this.seriesData;
       this.updateFlag = true;
@@ -172,10 +179,9 @@ export class CommonComponent implements OnInit, OnChanges {
       // }
     ]
   };
-  changes(event){
-    console.log(event)
-    
-}
+  changes(event) {
+    console.log(event);
+  }
 
   updateFlag = false; // optional boolean
   oneToOneFlag = true; // optional boolean, defaults to false

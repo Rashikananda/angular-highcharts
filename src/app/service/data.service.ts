@@ -9,11 +9,12 @@ import { API_ENDPOINT } from "./Constants";
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  get(url, params?: any[]) {
+  get(url, qparams?: any[]) {
+    console.log(qparams);
     let searchParams = new HttpParams();
-    if (params) {
-      params.forEach(d => {
-        searchParams.append(d.key, d.val);
+    if (qparams) {
+      qparams.forEach(d => {
+        searchParams = searchParams.append(d.key, d.value);
       });
     }
     console.log(searchParams);
