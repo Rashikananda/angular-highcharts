@@ -3,20 +3,20 @@
     <div class="graph-filters">
         <div class="graph-type">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Arrival Time
+                {{type}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item">Arrival Time</a>
-                <a class="dropdown-item">Backlog</a>
+                <a class="dropdown-item" (click)="change('type','Arrival Time')">Arrival Time</a>
+                <a class="dropdown-item"  (click)="change('type','Backlog')">Backlog</a>
             </div>
         </div>
         <div class="graph-range">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Last 10 Mins
+                {{range}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item">Last 10 Mins</a>
-                <a class="dropdown-item">Last 5 Mins</a>
+                <a class="dropdown-item" (click)="change('range','Last 10 Mins',10)">Last 10 Mins</a>
+                <a class="dropdown-item" (click)="change('range','Last 5 Mins',5)">Last 5 Mins</a>
             </div>
         </div>
         <div class="graph-interval">

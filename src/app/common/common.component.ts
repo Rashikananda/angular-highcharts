@@ -172,7 +172,10 @@ export class CommonComponent implements OnInit, OnChanges {
       // }
     ]
   };
-  change() {}
+  changes(event){
+    console.log(event)
+    
+}
 
   updateFlag = false; // optional boolean
   oneToOneFlag = true; // optional boolean, defaults to false
