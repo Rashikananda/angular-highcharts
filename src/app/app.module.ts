@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MainContentComponent } from './main-content/main-content.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { TopicsComponent } from './topics/topics.component';
+import { ConsumersComponent } from './consumers/consumers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { TopicsComponent } from './topics/topics.component';
     ContentComponent,
     MainContentComponent,
     ConsumerComponent,
-    TopicsComponent
+    TopicsComponent,
+    ConsumersComponent
   ],
   imports: [
     BrowserModule,
