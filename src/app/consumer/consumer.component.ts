@@ -84,6 +84,6 @@ export class ConsumerComponent implements OnInit {
         key: "arrivalRateUnit",
         value: this.interval
       }
-    ,r]);
+    ]);
   }
 }
