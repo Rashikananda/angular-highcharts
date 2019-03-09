@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.component.html',
@@ -21,9 +21,12 @@ export class TopicsComponent implements OnInit {
     {serial: 10, name: 'Neon', consumers: 23, messages: 1000}
   ];
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
+  }
+  dispatch(name){
+    this.router.navigate(['/consumers', name]);
   }
 
 }
