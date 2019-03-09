@@ -1,44 +1,42 @@
-import { DataService } from './../service/data.service';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { DataService } from "./../service/data.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-consumer',
-  templateUrl: './consumer.component.html',
-  styleUrls: ['./consumer.component.css']
+  selector: "app-consumer",
+  templateUrl: "./consumer.component.html",
+  styleUrls: ["./consumer.component.css"]
 })
 export class ConsumerComponent implements OnInit {
-  @Input('name') masterName: string;
-  @Output() changes:EventEmitter<any>= new EventEmitter();
+  @Input("name") masterName: string;
+  @Output() changes: EventEmitter<any> = new EventEmitter();
 
-  constructor(private ds: DataService) {
+  constructor(private ds: DataService, private router: Router) {}
 
-  }
-
-  type="Arrival Time";
-  types=[
+  type = "Arrival Time";
+  types = [
     {
-      name:'Arrival Time',
-      value: 'AT'
+      name: "Arrival Time",
+      value: "AT"
     },
     {
-      name:'Backlog',
-      value: 'BL'
+      name: "Backlog",
+      value: "BL"
     }
-  ]
-  range='10 Samples';
-  ranges=[
+  ];
+  range = "10 Samples";
+  ranges = [
     {
-      name: '10 Samples',
+      name: "10 Samples",
       value: 10
     },
     {
-      name: '20 Samples',
+      name: "20 Samples",
       value: 20
     }
   ];
-  interval="Per Hour";
-  intervals=[
+  interval = "Per Hour";
+  intervals = [
     {
       name: "Per Hour",
       value: "hour"
@@ -49,24 +47,27 @@ export class ConsumerComponent implements OnInit {
     }
   ];
 
-  ngOnInit() {
-  }
-  change(p,change,q?:any){
-    let r=q ? q: 10;
-    if(p=="type"){
-      this.type=change;
+  ngOnInit() {}
+  change(p, change, q?: any) {
+    let r = q ? q : 10;
+    if (p == "type") {
+      this.type = change;
     }
-    if(p=="range"){
-      this.range=change;
+    if (p == "range") {
+      this.range = change;
     }
-    if(p=="interval"){
-      this.interval=change;
+    if (p == "interval") {
+      this.interval = change;
     }
 
     const typeIndex = this.types.findIndex(tItem => tItem.name === this.type);
-    const rangeIndex = this.ranges.findIndex(rItem => rItem.name === this.range);
-    const intervalIndex = this.intervals.findIndex(iItem => iItem.name === this.interval);
-    
+    const rangeIndex = this.ranges.findIndex(
+      rItem => rItem.name === this.range
+    );
+    const intervalIndex = this.intervals.findIndex(
+      iItem => iItem.name === this.interval
+    );
+
     this.changes.emit([
       {
         key: "startTimeStamp",
@@ -78,7 +79,7 @@ export class ConsumerComponent implements OnInit {
       },
       {
         key: "type",
-        value: this.types[typeIndex].value 
+        value: this.types[typeIndex].value
       },
       {
         key: "sampleCount",

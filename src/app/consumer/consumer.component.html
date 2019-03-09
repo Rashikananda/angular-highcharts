@@ -1,37 +1,72 @@
 <div class="article-header">
-    <div class="title">Consumer Name</div>
-    <div class="graph-filters">
-        <div class="graph-type">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{type}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a *ngFor="let type of types" class="dropdown-item" (click)="change('type',type.name,type.value)">{{type.name}}</a>
-                <!-- <a class="dropdown-item" (click)="change('type','Arrival Time')">Arrival Time</a>
+  <div class="title">{{ this.router.url.split("?")[0] }}</div>
+  <div class="graph-filters">
+    <div class="graph-type">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ type }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          *ngFor="let type of types"
+          class="dropdown-item"
+          (click)="change('type', type.name, type.value)"
+          >{{ type.name }}</a
+        >
+        <!-- <a class="dropdown-item" (click)="change('type','Arrival Time')">Arrival Time</a>
                 <a class="dropdown-item"  (click)="change('type','Backlog')">Backlog</a> -->
-            </div>
-        </div>
-        <div class="graph-range">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{range}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a *ngFor="let range of ranges" class="dropdown-item" (click)="change('range',range.name,range.value)">{{range.name}}</a>
-                <!-- <a class="dropdown-item" (click)="change('range','Last 10 Mins',10)">Last 10 Mins</a>
-                <a class="dropdown-item" (click)="change('range','Last 5 Mins',5)">Last 5 Mins</a> -->
-            </div>
-        </div>
-        <div class="graph-interval">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{interval}}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a *ngFor="let interval of intervals" class="dropdown-item" (click)="change('interval',interval.name,interval.value)">{{interval.name}}</a>
-                <!-- <a class="dropdown-item">Per 10 Secs</a>
-                <a class="dropdown-item">Per 5 Secs</a> -->
-            </div>
-        </div>
+      </div>
     </div>
-    
+    <div class="graph-range">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ range }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          *ngFor="let range of ranges"
+          class="dropdown-item"
+          (click)="change('range', range.name, range.value)"
+          >{{ range.name }}</a
+        >
+        <!-- <a class="dropdown-item" (click)="change('range','Last 10 Mins',10)">Last 10 Mins</a>
+                <a class="dropdown-item" (click)="change('range','Last 5 Mins',5)">Last 5 Mins</a> -->
+      </div>
+    </div>
+    <div class="graph-interval">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ interval }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          *ngFor="let interval of intervals"
+          class="dropdown-item"
+          (click)="change('interval', interval.name, interval.value)"
+          >{{ interval.name }}</a
+        >
+        <!-- <a class="dropdown-item">Per 10 Secs</a>
+                <a class="dropdown-item">Per 5 Secs</a> -->
+      </div>
+    </div>
+  </div>
 </div>
 <div class="arcicle-content"></div>
