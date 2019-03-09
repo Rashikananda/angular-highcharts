@@ -3,10 +3,10 @@ import * as Highcharts from "highcharts";
 import Data from "../../assets/arrival-rate-raw.js";
 import Data1 from "../../assets/new-arraival-rate";
 import * as moment from "moment";
-import { DataService } from "../service/data.service.js";
 import { isUndefined } from "util";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { DataService } from "../service/data.service";
 
 @Component({
   selector: "app-common",
@@ -37,7 +37,14 @@ export class CommonComponent implements OnInit, OnChanges {
 
     this.nameToDisplay = this.route.snapshot.paramMap.get("id");
 
-    this.ds.get(this.nameToDisplay + ".json", null).subscribe(data => {
+    let defaultParams = [
+      { key: "startTimeStamp", value: this.ds.getCurrentTime() },
+      { key: "endTimeStamp", value: this.ds.getTimeMinus(1) },
+      { key: "topic", value: this.nameToDisplay },
+      { key: "sampleCount", value: 10 },
+      { key: "arrivalRateUnit", value: "seconds" }
+    ];
+    this.ds.get(this.nameToDisplay + ".json", defaultParams).subscribe(data => {
       this.seriesData = this.getProcessedArrivalData2(data);
       this.chartOptions.series = this.seriesData;
       this.updateFlag = true;
@@ -99,27 +106,27 @@ export class CommonComponent implements OnInit, OnChanges {
   Highcharts = Highcharts; // required
   chartConstructor = "chart"; // optional string, defaults to 'chart'
   chartOptions = {
-    chart: {
-      type: "spline",
-      //   animation: Highcharts.svg, // don't animate in old IE
-      marginRight: 10,
-      events: {
-        load: function() {
-          // set up the updating of the chart each second
-          var series = this.series[0];
+    // chart: {
+    //   type: "spline",
+    //   //   animation: Highcharts.svg, // don't animate in old IE
+    //   marginRight: 10,
+    //   events: {
+    //     load: function() {
+    //       // set up the updating of the chart each second
+    //       var series = this.series[0];
 
-          setInterval(function() {
-            if (!series) {
-              return;
-            }
-            var x = series["data"][series["data"].length - 1]["x"] + 50000, // current time
-              y = Math.random() * Math.floor(3);
-            //   console.log(x,y)
-            series.addPoint([x, y], true, true);
-          }, 1000);
-        }
-      }
-    },
+    //       setInterval(function() {
+    //         if (!series) {
+    //           return;
+    //         }
+    //         var x = series["data"][series["data"].length - 1]["x"] + 50000, // current time
+    //           y = Math.random() * Math.floor(3);
+    //         //   console.log(x,y)
+    //         series.addPoint([x, y], true, true);
+    //       }, 1000);
+    //     }
+    //   }
+    // },
     time: {
       useUTC: false
     },
@@ -172,10 +179,9 @@ export class CommonComponent implements OnInit, OnChanges {
       // }
     ]
   };
-  changes(event){
-    console.log(event)
-    
-}
+  changes(event) {
+    console.log(event);
+  }
 
   updateFlag = false; // optional boolean
   oneToOneFlag = true; // optional boolean, defaults to false

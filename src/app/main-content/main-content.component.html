@@ -1,11 +1,10 @@
-
-<mat-grid-list cols="4" rowHeight="150px">
+<mat-grid-list cols="4" rowHeight="150px" *ngIf="db">
   <mat-grid-tile>
     <div class="tile-wrapper">
       <div class="tile-panel topics">
         <div class="tile-text">Topics</div>
-        <div class="tile-value">12</div>
-        <div class="tile-link" (click)='dispatch("topics")'>GOTO Page</div>
+        <div class="tile-value">{{ db.topics }}</div>
+        <div class="tile-link" (click)="dispatch('topics')">GOTO Page</div>
       </div>
     </div>
   </mat-grid-tile>
@@ -14,8 +13,8 @@
     <div class="tile-wrapper">
       <div class="tile-panel consumers">
         <div class="tile-text">Consumers</div>
-        <div class="tile-value">144</div>
-        <div class="tile-link" (click)='dispatch("consumers")'>GOTO Page</div>
+        <div class="tile-value">{{ db.consumers }}</div>
+        <div class="tile-link" (click)="dispatch('consumers')">GOTO Page</div>
       </div>
     </div>
   </mat-grid-tile>
@@ -24,7 +23,7 @@
     <div class="tile-wrapper">
       <div class="tile-panel brokers">
         <div class="tile-text">Brokers</div>
-        <div class="tile-value">5</div>
+        <div class="tile-value">{{ db.broker }}</div>
       </div>
     </div>
   </mat-grid-tile>
@@ -32,10 +31,9 @@
   <mat-grid-tile>
     <div class="tile-wrapper">
       <div class="tile-panel messages">
-        <div class="tile-text">Messages</div>
-        <div class="tile-value">125402</div>
+        <div class="tile-text">#Messages</div>
+        <div class="tile-value">{{ db.totalMessages }}</div>
       </div>
     </div>
   </mat-grid-tile>
-
 </mat-grid-list>
