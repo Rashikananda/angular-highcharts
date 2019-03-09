@@ -67,7 +67,9 @@ export class HighChartsComponent implements OnInit,OnChanges {
 
               // set up the updating of the chart each second
               var series = this.series[0];
+
               setInterval(function () {
+                //   console.log(series['data']);
                   var x = series['data'][series['data'].length-1]['x']+50000, // current time
                       y = Math.random() * Math.floor(3);
                     //   console.log(x,y)
