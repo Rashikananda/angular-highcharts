@@ -106,27 +106,27 @@ export class CommonComponent implements OnInit, OnChanges {
   Highcharts = Highcharts; // required
   chartConstructor = "chart"; // optional string, defaults to 'chart'
   chartOptions = {
-    chart: {
-      type: "spline",
-      //   animation: Highcharts.svg, // don't animate in old IE
-      marginRight: 10,
-      events: {
-        load: function() {
-          // set up the updating of the chart each second
-          var series = this.series[0];
+    // chart: {
+    //   type: "spline",
+    //   //   animation: Highcharts.svg, // don't animate in old IE
+    //   marginRight: 10,
+    //   events: {
+    //     load: function() {
+    //       // set up the updating of the chart each second
+    //       var series = this.series[0];
 
-          setInterval(function() {
-            if (!series) {
-              return;
-            }
-            var x = series["data"][series["data"].length - 1]["x"] + 50000, // current time
-              y = Math.random() * Math.floor(3);
-            //   console.log(x,y)
-            series.addPoint([x, y], true, true);
-          }, 1000);
-        }
-      }
-    },
+    //       setInterval(function() {
+    //         if (!series) {
+    //           return;
+    //         }
+    //         var x = series["data"][series["data"].length - 1]["x"] + 50000, // current time
+    //           y = Math.random() * Math.floor(3);
+    //         //   console.log(x,y)
+    //         series.addPoint([x, y], true, true);
+    //       }, 1000);
+    //     }
+    //   }
+    // },
     time: {
       useUTC: false
     },
