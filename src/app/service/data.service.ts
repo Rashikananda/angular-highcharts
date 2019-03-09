@@ -29,4 +29,13 @@ export class DataService {
       };
     });
   }
+
+  getTimeMinus(integer) {
+    return moment()
+      .subtract(integer, "minute")
+      .format("YYYY-MM-DD HH:mm:ss");
+  }
+  getCurrentTime() {
+    return moment().format("YYYY-MM-DD HH:mm:ss");
+  }
 }
