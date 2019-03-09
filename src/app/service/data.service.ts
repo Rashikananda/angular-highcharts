@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-let moment = require("moment");
+import * as moment from "moment";
 import { API_ENDPOINT } from "./Constants";
 
 @Injectable({
