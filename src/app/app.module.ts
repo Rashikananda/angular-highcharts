@@ -12,17 +12,22 @@ import { MainContentComponent } from './main-content/main-content.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { TopicsComponent } from './topics/topics.component';
 import { ConsumersComponent } from './consumers/consumers.component';
+import { CommonComponent } from './common/common.component';
+// import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
     HighchartsChartComponent,
     HighChartsComponent,
+    // CommonHighChartsComponent,
     HeaderComponent,
     ContentComponent,
     MainContentComponent,
     ConsumerComponent,
     TopicsComponent,
-    ConsumersComponent
+    ConsumersComponent,
+    CommonComponent
   ],
   imports: [
     BrowserModule,

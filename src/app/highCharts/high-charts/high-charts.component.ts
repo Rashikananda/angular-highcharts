@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import Data from "../../../assets/arrival-rate-raw.js";
 import Data1 from "../../../assets/new-arraival-rate";
@@ -8,7 +8,8 @@ import * as moment from 'moment';
   templateUrl: './high-charts.component.html',
   styleUrls: ['./high-charts.component.css']
 })
-export class HighChartsComponent implements OnInit {
+export class HighChartsComponent implements OnInit,OnChanges {
+    @Input ('data')HighchartsData;
   seriesData;
   topicsArray;
   consumerArray;
@@ -21,7 +22,9 @@ export class HighChartsComponent implements OnInit {
     this.seriesData = this.getProcessedArrivalData2(Data1);
     this.chartOptions.series = this.seriesData;
   }
-
+  ngOnChanges(){
+      console.log(this.HighchartsData);
+  }
   // getProcessedArrivalData1(rawData) {
   //   let processedSeriesData = [];
   //   const self = this;
@@ -65,9 +68,9 @@ export class HighChartsComponent implements OnInit {
               // set up the updating of the chart each second
               var series = this.series[0];
               setInterval(function () {
-                  var x = (new Date()).getTime(), // current time
-                      y = Math.floor(Math.random() * Math.floor(3));
-                      console.log(y)
+                  var x = series['data'][series['data'].length-1]['x']+50000, // current time
+                      y = Math.random() * Math.floor(3);
+                    //   console.log(x,y)
                   series.addPoint([x, y], true, true);
               }, 1000);
           }
@@ -82,7 +85,7 @@ export class HighChartsComponent implements OnInit {
   },
   xAxis: {
       type: 'datetime',
-      // tickPixelInterval: 150
+      tickPixelInterval: 150
   },
   yAxis: {
       title: {

@@ -3,14 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { HighChartsComponent } from './highCharts/high-charts/high-charts.component';
 import { ConsumersComponent } from './consumers/consumers.component';
 import { TopicsComponent } from './topics/topics.component';
+import { CommonComponent } from './common/common.component';
+// import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 const routes: Routes = [
   { path: '', redirectTo: '/highCharts', pathMatch: 'full' },
   { path: 'highCharts', component: HighChartsComponent },
   { path: 'consumers', component: ConsumersComponent },
-  { path: 'consumers/:consumerId', component: ConsumersComponent },
+  { path: 'consumers/:consumerId', component: CommonComponent },
   { path: 'topics', component: TopicsComponent },
-  { path: 'topics/:topicId', component: TopicsComponent }
+  { path: 'topics/:topicId', component: CommonComponent }
 ];
 
 @NgModule({
