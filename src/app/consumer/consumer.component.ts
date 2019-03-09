@@ -62,6 +62,10 @@ export class ConsumerComponent implements OnInit {
     if(p=="interval"){
       this.interval=change;
     }
+
+    const typeIndex = this.types.findIndex(tItem => tItem.name === this.type);
+    const rangeIndex = this.ranges.findIndex(rItem => rItem.name === this.range);
+    const intervalIndex = this.intervals.findIndex(iItem => iItem.name === this.interval);
     
     this.changes.emit([
       {
@@ -73,16 +77,16 @@ export class ConsumerComponent implements OnInit {
         value: this.ds.getTimeMinus(1)
       },
       {
-        key: "topic",
-        value: this.type
+        key: "type",
+        value: this.types[typeIndex].value 
       },
       {
         key: "sampleCount",
-        value: this.range
+        value: this.ranges[rangeIndex].value
       },
       {
         key: "arrivalRateUnit",
-        value: this.interval
+        value: this.intervals[intervalIndex].value
       }
     ]);
   }
