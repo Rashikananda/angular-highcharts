@@ -181,6 +181,11 @@ export class CommonComponent implements OnInit, OnChanges {
   };
   changes(event) {
     console.log(event);
+    this.ds.get(this.nameToDisplay + ".json", event).subscribe(data => {
+      this.seriesData = this.getProcessedArrivalData2(data);
+      this.chartOptions.series = this.seriesData;
+      this.updateFlag = true;
+    });
   }
 
   updateFlag = false; // optional boolean
