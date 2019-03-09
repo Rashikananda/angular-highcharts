@@ -1,3 +1,4 @@
+import { DataService } from './../service/data.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
@@ -9,6 +10,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ConsumerComponent implements OnInit {
   @Input('name') masterName: string;
   @Output() changes:EventEmitter<any>= new EventEmitter();
+
+  constructor(private ds: DataService) {
+
+  }
+
   type="Arrival Time";
   types=[
     {
@@ -20,29 +26,28 @@ export class ConsumerComponent implements OnInit {
       value: 'BL'
     }
   ]
-  range='Last 10 Mins';
+  range='10 Samples';
   ranges=[
     {
-      name:'Last 10 Mins',
-      value:10
-    },
-    {
-      name:'Last 5 Mins',
-      value:5
-    }
-  ];
-  interval="Per 10 Secs";
-  intervals=[
-    {
-      name: "Per 10 Secs",
+      name: '10 Samples',
       value: 10
     },
     {
-      name: "Per 5 Secs",
-      value: 5
+      name: '20 Samples',
+      value: 20
     }
   ];
-  constructor() { }
+  interval="Per Hour";
+  intervals=[
+    {
+      name: "Per Hour",
+      value: "hour"
+    },
+    {
+      name: "Per Minute",
+      value: "min"
+    }
+  ];
 
   ngOnInit() {
   }
@@ -55,12 +60,30 @@ export class ConsumerComponent implements OnInit {
       this.range=change;
     }
     if(p=="interval"){
-      this.range=change;
+      this.interval=change;
     }
     
-    this.changes.emit([this.type,r]);
+    this.changes.emit([
+      {
+        key: "startTimeStamp",
+        value: this.ds.getCurrentTime()
+      },
+      {
+        key: "startTimeStamp",
+        value: this.ds.getTimeMinus(1)
+      },
+      {
+        key: "topic",
+        value: this.type
+      },
+      {
+        key: "sampleCount",
+        value: this.range
+      },
+      {
+        key: "arrivalRateUnit",
+        value: this.interval
+      }
+    ,r]);
   }
-
-  
-
 }
