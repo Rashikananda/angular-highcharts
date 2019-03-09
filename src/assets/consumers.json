@@ -10,5 +10,11 @@
     "consumerGroup": "c1",
     "consumerName": "sales-another-report",
     "topics": 11
+  },
+  {
+    "consumerId": 14,
+    "consumerGroup": "c2",
+    "consumerName": "sales-mega-report",
+    "topics": 11
   }
 ]
