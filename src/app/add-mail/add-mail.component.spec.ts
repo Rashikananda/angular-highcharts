@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HighChartsComponent } from './high-charts.component';
+import { AddMailComponent } from './add-mail.component';
 
-describe('HighChartsComponent', () => {
-  let component: HighChartsComponent;
-  let fixture: ComponentFixture<HighChartsComponent>;
+describe('AddMailComponent', () => {
+  let component: AddMailComponent;
+  let fixture: ComponentFixture<AddMailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HighChartsComponent ]
+      declarations: [ AddMailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HighChartsComponent);
+    fixture = TestBed.createComponent(AddMailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
