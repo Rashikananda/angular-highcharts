@@ -1,8 +1,24 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav opened mode="side"><app-add-mail></app-add-mail></mat-sidenav>
-  <mat-sidenav opened mode="side" position="end">En<app-templates></app-templates></mat-sidenav>
- <div style="height: 400px;">
-  Implicit main content
- </div> 
+  <mat-sidenav opened mode="side" position="end"><app-templates></app-templates></mat-sidenav>
+ <div style="height: 600px;">
+  <quill-editor [(ngModel)]="htmlText"
+  placeholder="Enter Text"
+  [modules]="quillConfig"
+  (onSelectionChanged)="onSelectionChanged($event)"
+  (onContentChanged)="onContentChanged($event)"></quill-editor>
+
+<div class="toolbar">
+  <button class="ql-bold">Bold</button>
+  <!-- <button class="ql-emoji"></button> -->
+</div>
+  
+
+
+  <div>
+    <pre>{{htmlText}}</pre>
+  </div>
+ </div>
+
 </mat-sidenav-container>
 

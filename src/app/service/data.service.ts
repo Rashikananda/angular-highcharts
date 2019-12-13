@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import * as moment from "moment";
 import { API_ENDPOINT } from "./Constants";
 
@@ -7,6 +7,10 @@ import { API_ENDPOINT } from "./Constants";
   providedIn: "root"
 })
 export class DataService {
+  headers = new HttpHeaders({
+    'Content-Type':  'text/plain',
+  });
+  
   constructor(private http: HttpClient) {}
 
   get(url, qparams?: any[]) {
@@ -38,5 +42,9 @@ export class DataService {
   }
   getCurrentTime() {
     return moment().format("YYYY-MM-DD HH:mm:ss");
+  }
+
+  getTmplates() {
+ 
   }
 }

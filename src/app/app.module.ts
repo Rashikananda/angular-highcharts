@@ -5,12 +5,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { QuillModule } from 'ngx-quill'
 import { HttpClientModule } from "@angular/common/http";
 import { DataService } from "./service/data.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddMailComponent } from './add-mail/add-mail.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { QuillInitializeService } from './service/quill-initialize-service.service';
+import { FormsModule } from '@angular/forms';
 // import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 @NgModule({
@@ -27,9 +29,11 @@ import { TemplatesComponent } from './templates/templates.component';
     AppRoutingModule,
     HttpClientModule,
     DemoMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    QuillModule.forRoot(),
+    FormsModule
   ],
-  providers: [DataService],
+  providers: [DataService,QuillInitializeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
