@@ -10,7 +10,7 @@
 </div>
 <div mat-dialog-content>
   <div style="display:inline-flex; width:100%;" >
-    <div [innerHtml]="htmlText" ></div>
+    <div [innerHtml]="data.template" ></div>
 
     <div style="margin: 0 auto;">
       <div *ngFor="let prop of data.props" style="margin: 20px;">
@@ -29,6 +29,9 @@
   
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Later</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <div style="margin:0 auto;">
+    <button mat-button (click)="onNoClick()"><mat-icon>cancel_schedule_send</mat-icon></button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial><mat-icon>send</mat-icon></button>
+  </div>
+  
 </div>

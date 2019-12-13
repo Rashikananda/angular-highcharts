@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-templates',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./templates.component.css']
 })
 export class TemplatesComponent implements OnInit {
+  @Output() templateIndexChange: EventEmitter<any> = new EventEmitter();
   templates = [
     {
       name: 'template1',

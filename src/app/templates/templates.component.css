@@ -1,0 +1,17 @@
+.addTemplate{
+    width:250px;
+      height:250px;
+      border: 1px solid black;
+      background-image: url("https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjljKiLprPmAhU8H7cAHTMSBfcQjRx6BAgBEAQ&url=http%3A%2F%2Fwww.iconarchive.com%2Fshow%2Foutline-icons-by-iconsmind%2Fadd-icon.html&psig=AOvVaw2v9cWp9NQouQYjHGQLC3fy&ust=1576349617858516"); /* all icons in a single file */
+    background-repeat: no-repeat;
+    background-position: -48px 0px;   
+}
+
+.addTemplate:before {
+    
+}
+
+.addTemplate:hover {
+    border: 1px solid black;
+    cursor:pointer;
+}

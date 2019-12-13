@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav opened mode="side"><app-add-mail></app-add-mail></mat-sidenav>
-  <mat-sidenav opened mode="side" position="end"><app-templates></app-templates></mat-sidenav>
+  <mat-sidenav opened mode="side" *ngIf="false"><app-add-mail></app-add-mail></mat-sidenav>
+  <mat-sidenav opened mode="side" position="end"><app-templates (templateIndexChange)="templateIndexChange($event)"></app-templates></mat-sidenav>
  <div style="height: 600px;">
   <label class="file" >
     <style>
@@ -63,7 +63,7 @@
     content: "Choose file...";
 }
     </style>
-    <input type="file" id="file" aria-label="File browser example" (change)='onChange($event)'>
+    <input type="file" id="file" aria-label="File browser example" (change)='onChange($event.target.files)'>
     <span class="file-custom"></span>
   </label>
 <input id="file-upload" type="file" style="display:none"/>
