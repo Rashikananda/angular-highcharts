@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DialougeComponent } from '../dialouge/dialouge.component';
 import { DataService } from '../service/data.service';
 import { templates } from "../service/Constants";
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
