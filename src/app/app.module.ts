@@ -13,6 +13,7 @@ import { AddMailComponent } from './add-mail/add-mail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { QuillInitializeService } from './service/quill-initialize-service.service';
 import { FormsModule } from '@angular/forms';
+import { DialougeComponent } from './dialouge/dialouge.component';
 // import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     AddMailComponent,
     TemplatesComponent,
+    DialougeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [DataService,QuillInitializeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialougeComponent]
 })
 export class AppModule {}

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { QuillInitializeService } from '../service/quill-initialize-service.service';
-import { MatDialog } from '@angular/material';
-import { DialougeComponent } from '../dialouge/dialouge.component';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-dialouge',
+  templateUrl: './dialouge.component.html',
+  styleUrls: ['./dialouge.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DialougeComponent implements OnInit {
+  
   htmlText = `<table border="0" cellpadding="0" cellspacing="0" width="600">
   <tbody>
   <tr>
@@ -162,155 +161,23 @@ export class DashboardComponent implements OnInit {
         </td>
     </tr>
   </tbody></table>`;
-  hasFocus = false;
-
-  atValues = [
-    { id: 1, value: 'Fredrik Sundqvist', link: 'https://google.com' },
-    { id: 2, value: 'Patrik Sjölin' }
-  ];
-  hashValues = [
-    { id: 3, value: 'Fredrik Sundqvist 2' },
-    { id: 4, value: 'Patrik Sjölin 2' }
-  ]
-
-  quillConfig={
-    // toolbar: '.toolbar',
-    // toolbar: {
-    //   container: [
-    //     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    //     ['code-block'],
-    //     [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    //     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    //     //[{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    //     //[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    //     //[{ 'direction': 'rtl' }],                         // text direction
-
-    //     //[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    //     //[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    //     //[{ 'font': [] }],
-    //     //[{ 'align': [] }],
-
-    //     ['clean'],                                         // remove formatting button
-
-    //     ['link'],
-    //     //['link', 'image', 'video']  
-    //     ['emoji'], 
-    //   ],
-    //   handlers: {'emoji': function() {}}
-    // },
-    // autoLink: true,
-
-    // mention: {
-    //   allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
-    //   mentionDenotationChars: ["@", "#"],
-    //   source: (searchTerm, renderList, mentionChar) => {
-    //     let values;
-
-    //     if (mentionChar === "@") {
-    //       values = this.atValues;
-    //     } else {
-    //       values = this.hashValues;
-    //     }
-        
-    //     if (searchTerm.length === 0) {
-    //       renderList(values, searchTerm);
-    //     } else {
-    //       const matches = [];
-    //       for (var i = 0; i < values.length; i++)
-    //         if (~values[i].value.toLowerCase().indexOf(searchTerm.toLowerCase())) matches.push(values[i]);
-    //       renderList(matches, searchTerm);
-    //     }
-    //   },
-    // },
-    // "emoji-toolbar": true,
-    // "emoji-textarea": false,
-    // "emoji-shortname": true,
-    keyboard: {
-      bindings: {
-        // shiftEnter: {
-        //   key: 13,
-        //   shiftKey: true,
-        //   handler: (range, context) => {
-        //     // Handle shift+enter
-        //     console.log("shift+enter")
-        //   }
-        // },
-        enter:{
-          key:13,
-          handler: (range, context)=>{
-            console.log("enter");
-            return true;
-          }
-        }
-      }
-    }
-  }
-  fileContent;
-
-  public onChange(fileList: FileList): void {
-    let file = fileList[0];
-    let fileReader: FileReader = new FileReader();
-    let self = this;
-    fileReader.onloadend = function(x) {
-      self.fileContent = fileReader.result;
-    }
-    fileReader.readAsText(file);
-  }
-  constructor(
-    private quillInitializeService: QuillInitializeService, public dialog: MatDialog
-  ){
-
-  }
-  animal: string;
-  name: string;
-
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialougeComponent, {
-      width: '80%',
-      data: {title: "", props: ['foody','sporty'], selectedProps: []}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
-
-  test=(event)=>{
-    console.log(event.keyCode);
-  }
-
-  onSelectionChanged = (event) =>{
-    if(event.oldRange == null){
-      this.onFocus();
-    }
-    if(event.range == null){
-      this.onBlur();
-    }
-  }
-
-  onContentChanged = (event) =>{
-    //console.log(event.html);
-  }
-
-  onFocus = () =>{
-    console.log("On Focus");
-  }
-  onBlur = () =>{
-    console.log("Blurred");
-  }
-
+  constructor(public dialogRef: MatDialogRef<DialougeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
-    // var quill = new Quill('#editor', {
-    //   // theme: 'snow'
-      
-    
-    //   modules: { toolbar: '#toolbar' }
-    // });
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  toggelChange = (event,prop) => {
+      console.log(event);
+      const index = this.data.selectedProps.indexOf(prop);
+      if (index > -1) {
+        this.data.selectedProps.splice(index ,1)
+      } else {
+        this.data.selectedProps.push(prop)
+      }
   }
 
 }

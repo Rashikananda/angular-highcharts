@@ -2,6 +2,15 @@
   <mat-sidenav opened mode="side"><app-add-mail></app-add-mail></mat-sidenav>
   <mat-sidenav opened mode="side" position="end"><app-templates></app-templates></mat-sidenav>
  <div style="height: 600px;">
+  <label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> Custom Upload
+</label>
+<input id="file-upload" type="file" style="display:none"/>
+    <button mat-button color="primary" style="float:right" (click)=" openDialog()">Create Campaign</button>
+<!-- <div>
+  <h3>File Content</h3>
+  <pre> {{fileContent}} </pre>
+</div> -->
   <quill-editor [(ngModel)]="htmlText"
   placeholder="Enter Text"
   [modules]="quillConfig"
