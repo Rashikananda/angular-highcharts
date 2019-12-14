@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   quill;
   htmlText = templates[0];
   hasFocus = false;
-  props =[];
+  props = [{id:1,name: 'foody'},{id:2,name:'sporty'}];
   atValues = [
     { id: 1, value: 'Fredrik Sundqvist', link: 'https://google.com' },
     { id: 2, value: 'Patrik Sjölin' }
@@ -123,8 +123,8 @@ export class DashboardComponent implements OnInit {
   }
 
  getProperties() { this.service.getProperties().subscribe((a:any) => {
-  console.log('a',a);
-  if( isNullOrUndefined(a) || a.length === 0) {
+  console.log('a', a)
+  if( isNullOrUndefined(a) || a.length ===0) {
     this.props =  [{id:1,name: 'foody'},{id:2,name:'sporty'}];
 
   } else {
