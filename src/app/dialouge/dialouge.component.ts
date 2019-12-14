@@ -9,7 +9,9 @@ export class DialougeComponent implements OnInit {
   
 
   constructor(public dialogRef: MatDialogRef<DialougeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data) { 
+      console.log(this.data);
+    }
 
   ngOnInit() {
   }
@@ -19,11 +21,11 @@ export class DialougeComponent implements OnInit {
 
   toggelChange = (event,prop) => {
       console.log(event);
-      const index = this.data.selectedProps.indexOf(prop);
+      const index = this.data.selectedProps.indexOf(prop.id);
       if (index > -1) {
         this.data.selectedProps.splice(index ,1)
       } else {
-        this.data.selectedProps.push(prop)
+        this.data.selectedProps.push(prop.id)
       }
   }
 

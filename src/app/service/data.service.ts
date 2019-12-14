@@ -17,7 +17,11 @@ export class DataService {
   
   constructor(private http: HttpClient) {
 
-    this.http.get('http://localhost:9000/properties').subscribe(console.log);
+    
+  }
+
+  getProperties() {
+    return this.http.get('http://localhost:9000/properties')
   }
 
   get(url, qparams?: any[]) {
@@ -65,7 +69,7 @@ export class DataService {
     "template": template_suffix +  data.template + template_suffix,
     "createdDate": new Date().toString(),
     "company": "Infosys",
-    "perference_target_ids":"2"
+    "perference_target_ids":data.selectedProps.join(',')
 	
 }
    return this.http.post(API_ENDPOINT+ '/campaign',k);

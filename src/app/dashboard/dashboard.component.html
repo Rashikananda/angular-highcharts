@@ -67,6 +67,7 @@
     <span class="file-custom"></span>
   </label>
 <input id="file-upload" type="file" style="display:none"/>
+<button mat-button color="primary" style="float:right" (click)=" exportAsPdf()">Export Template</button>
     <button mat-button color="primary" style="float:right" (click)=" openDialog()">Create Campaign</button>
 <!-- <div>
   <h3>File Content</h3>
@@ -77,19 +78,16 @@
 
   <quill-editor [(ngModel)]="htmlText"
   placeholder="Enter Text"
+  #quillEditor
   [modules]="quillConfig"
   (onSelectionChanged)="onSelectionChanged($event)"
   (onContentChanged)="onContentChanged($event)"></quill-editor>
 
-<div class="toolbar">
-  <button class="ql-bold">Bold</button>
-  <!-- <button class="ql-emoji"></button> -->
-</div>
   
-
+<div #exportExPDF  [innerHtml]="htmlText"></div>
 
   <div>
-    <pre>{{htmlText}}</pre>
+    <pre  id='exportExPDF'>{{htmlText}}</pre>
   </div>
  </div>
 
