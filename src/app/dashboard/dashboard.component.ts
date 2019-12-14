@@ -123,8 +123,8 @@ export class DashboardComponent implements OnInit {
   }
 
  getProperties() { this.service.getProperties().subscribe((a:any) => {
-
-  if( isNullOrUndefined(a) || a.length ===0) {
+  console.log('a',a);
+  if( isNullOrUndefined(a) || a.length === 0) {
     this.props =  [{id:1,name: 'foody'},{id:2,name:'sporty'}];
 
   } else {

@@ -17,11 +17,10 @@ export class DataService {
   
   constructor(private http: HttpClient) {
 
-    this.get
   }
 
   getProperties() {
-    return this.http.get('http://localhost:9000/properties')
+    return this.http.get('http://localhost:9000/get')
   }
 
   get(url, qparams?: any[]) {
