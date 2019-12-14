@@ -17,9 +17,9 @@
         <mat-slide-toggle  
         class="example-margin"
         (change)="toggelChange($event,prop)"
-        [checked]="data.selectedProps.includes(prop)"
+        [checked]="data.selectedProps.includes(prop.id)"
         >
-      {{prop}}
+      {{prop.name}}
     </mat-slide-toggle> 
       </div>
      

@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { QuillInitializeService } from '../service/quill-initialize-service.service';
 import { MatDialog } from '@angular/material';
 import { DialougeComponent } from '../dialouge/dialouge.component';
 import { DataService } from '../service/data.service';
 import { templates } from "../service/Constants";
 import { ActivatedRoute } from '@angular/router';
+import { isNullOrUndefined } from 'util';
+declare const   jsPDF, $;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
+  @ViewChild ('exportExPDF') public exportExPDF: ElementRef;
+  @ViewChild ('quillEditor') public quillEditor;
+  quill;
   htmlText = templates[0];
   hasFocus = false;
-
+  props =[];
   atValues = [
     { id: 1, value: 'Fredrik Sundqvist', link: 'https://google.com' },
     { id: 2, value: 'Patrik Sjölin' }
@@ -110,13 +116,22 @@ export class DashboardComponent implements OnInit {
     let file = fileList[0];
     let fileReader: FileReader = new FileReader();
     let self = this;
-    self.service.sendCamapignProperty(fileList[0]).subscribe(console.log);
-    fileReader.onloadend = function(x) {
-      self.fileContent = fileReader.result;
-      console.log(self.fileContent);
-      // self.service.sendCamapignProperty(self.fileContent);
-    }
-    fileReader.readAsText(file);
+    self.service.sendCamapignProperty(fileList[0]).subscribe(() => {
+      self.getProperties();
+    });
+    
+  }
+
+ getProperties() { this.service.getProperties().subscribe((a:any) => {
+
+  if( isNullOrUndefined(a) || a.length ===0) {
+    this.props =  [{id:1,name: 'foody'},{id:2,name:'sporty'}];
+
+  } else {
+    this.props = a;
+  }
+});
+
   }
   constructor(
     private quillInitializeService: QuillInitializeService, public dialog: MatDialog,private service: DataService
@@ -130,11 +145,12 @@ export class DashboardComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialougeComponent, {
       width: '70%',
-      data: {title: "", props: ['foody','sporty'], selectedProps: [],template: this.htmlText}
+      data: {title: "", props: this.props, selectedProps: [],template: this.htmlText}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
+      // result.selectedProps = 
       this.service.createCampaign(result).subscribe( a => {
         console.log(a);
       }, err => console.log(err));
@@ -168,6 +184,8 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.getProperties();
     // var quill = new Quill('#editor', {
     //   // theme: 'snow'
       
@@ -176,4 +194,36 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
+  exportAsPdf() {
+    console.log(this.quillEditor.quillEditor.root.innerHTML);
+    console.log(this.exportExPDF, this.htmlText,document.getElementById('exportExPDF'));
+  //  let doc = new jsPDF('p','pt','a4');
+  //  doc.setDrawColor(255,0,0);
+  //  doc.setProperties({
+  //   title: 'Title',
+  //   subject: 'This is the subject',
+  //   author: 'Author Name',
+  //   keywords: 'generated, javascript, web 2.0, ajax',
+  //   creator: 'Creator Name'
+  //  });
+  //  doc.addHTML(this.exportExPDF.nativeElement.innerHTML, () =>{
+  //   doc.save("ccda.pdf");
+  // });
+  var doc = new jsPDF();
+  var elementHTML = $('#exportExPDF').html();
+  var specialElementHandlers = {
+      '#elementH': function (element, renderer) {
+          return true;
+      }
+  };
+  doc.addHTML(this.quillEditor.quillEditor.root.innerText, () => {
+    doc.save("ccda.pdf");
+});
+// doc.save('file.pdf');
+  
+  // Save the PDF
+  // doc.save('sample-document.pdf');
+  
+ 
+  }
 }
