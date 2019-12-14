@@ -14,6 +14,8 @@ import { TemplatesComponent } from './templates/templates.component';
 import { QuillInitializeService } from './service/quill-initialize-service.service';
 import { FormsModule } from '@angular/forms';
 import { DialougeComponent } from './dialouge/dialouge.component';
+import { CampaignReportComponent } from './report/campaign-report/campaign-report.component';
+import { AgGridModule } from 'ag-grid-angular';
 // import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 @NgModule({
@@ -25,6 +27,7 @@ import { DialougeComponent } from './dialouge/dialouge.component';
     AddMailComponent,
     TemplatesComponent,
     DialougeComponent,
+    CampaignReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { DialougeComponent } from './dialouge/dialouge.component';
     DemoMaterialModule,
     BrowserAnimationsModule,
     QuillModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgGridModule.withComponents([])
   ],
   providers: [DataService,QuillInitializeService],
   bootstrap: [AppComponent],

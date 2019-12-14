@@ -1,0 +1,18 @@
+.campaigns-header-wrapper {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-weight: 600;
+}
+
+.campaign-header:first-child {
+    padding-left: 20px;
+} 
+
+.campaign-row-item:first-child {
+    padding-left: 20px;
+}
+
+.campaigns-body-wrapper {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
