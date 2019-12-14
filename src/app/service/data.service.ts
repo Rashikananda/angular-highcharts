@@ -20,7 +20,7 @@ export class DataService {
   }
 
   getProperties() {
-    return this.http.get('http://localhost:9000/get')
+    return this.http.get('http://localhost:9000/properties')
   }
 
   get(url, qparams?: any[]) {
@@ -66,7 +66,7 @@ export class DataService {
   getDashboardData() {
     // var fd = new FormData();
     //     fd.append('file', file);
-    return this.http.post( API_ENDPOINT+'/campaign',{});
+    return this.http.post( API_ENDPOINT+'/get',{});
   }
   createCampaign(data) {
     console.log(data);
