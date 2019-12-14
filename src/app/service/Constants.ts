@@ -86,7 +86,7 @@ export const templates = [`
 								<h6 style="text-align:center;margin-top: 9px;">COG Inc</h6>
 								<h6 style="text-align:center;">589&#8203; Howard&#8203; Street&#8203;</h6>
 								<h6 style="text-align:center;">San Francisco,&#8203; CA&#8203; 94105&#8203;</h6>
-								<h6 style="text-align:center;margin-top: 7px;"><a href="https://rxjs-nested-request-of-observable.stackblitz.io?email=rashikanandapattanaik@gmail.com" >unsubscribe</a></h6>
+								<h6 style="text-align:center;margin-top: 7px;"><a email_sendmail >unsubscribe</a></h6>
 							</td>
 						</tr>
 					</table>
