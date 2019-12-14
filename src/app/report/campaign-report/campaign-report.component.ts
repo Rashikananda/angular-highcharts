@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {GridOptions} from "@ag-grid-community/all-modules";
 
 @Component({
   selector: 'app-campaign-report',

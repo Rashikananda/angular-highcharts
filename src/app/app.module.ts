@@ -15,7 +15,6 @@ import { QuillInitializeService } from './service/quill-initialize-service.servi
 import { FormsModule } from '@angular/forms';
 import { DialougeComponent } from './dialouge/dialouge.component';
 import { CampaignReportComponent } from './report/campaign-report/campaign-report.component';
-import { AgGridModule } from 'ag-grid-angular';
 // import { CommonHighChartsComponent } from './highCharts/common-high-charts/common-high-charts';
 
 @NgModule({
@@ -37,7 +36,6 @@ import { AgGridModule } from 'ag-grid-angular';
     BrowserAnimationsModule,
     QuillModule.forRoot(),
     FormsModule,
-    AgGridModule.withComponents([])
   ],
   providers: [DataService,QuillInitializeService],
   bootstrap: [AppComponent],

@@ -67,8 +67,11 @@
     <span class="file-custom"></span>
   </label>
 <input id="file-upload" type="file" style="display:none"/>
-<button mat-button color="primary" style="float:right" (click)=" exportAsPdf()">Export Template</button>
-    <button mat-button color="primary" style="float:right" (click)=" openDialog()">Create Campaign</button>
+<div style="float:right">
+  <button mat-button color="primary"  (click)=" exportAsPdf()">Export Template</button>
+  <button mat-button color="primary" style="float:right" (click)=" openDialog()">Create Campaign</button>
+</div>
+
 <!-- <div>
   <h3>File Content</h3>
   <pre> {{fileContent}} </pre>

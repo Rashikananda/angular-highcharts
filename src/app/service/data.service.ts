@@ -17,7 +17,7 @@ export class DataService {
   
   constructor(private http: HttpClient) {
 
-    
+    this.get
   }
 
   getProperties() {
@@ -62,6 +62,12 @@ export class DataService {
     var fd = new FormData();
         fd.append('file', file);
     return this.http.post( API_ENDPOINT+'/uploads',fd);
+  }
+
+  getDashboardData() {
+    // var fd = new FormData();
+    //     fd.append('file', file);
+    return this.http.post( API_ENDPOINT+'/campaign',{});
   }
   createCampaign(data) {
     console.log(data);
